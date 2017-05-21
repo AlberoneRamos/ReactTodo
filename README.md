@@ -1,2 +1,2 @@
-# ReactClock
-Projeto criado para seguir as vídeo aulas de ReactJS (No entanto, trocarei para InfernoJS para testar esta biblioteca por indicação do Ice)
+# ReactTodo
+Aplicação feita para o curso de ReactJS do Andrew Mead no Udemy
