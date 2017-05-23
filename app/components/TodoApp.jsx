@@ -1,36 +1,63 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
 import TodoList from './TodoList';
+import TodoAddForm from './TodoAddForm';
+import TodoSearch from './TodoSearch';
+import uuid from 'node-uuid';
+import TodoAPI from '../api/TodoAPI';
 
 export default class TodoApp extends Component{
     constructor(props){
         super(props);
         this.state = {
-            todos: [
+            todos: TodoAPI.getTodos(),
+            searchText:'',
+            showCompleted:false
+        }
+        this.handleAddTodo = this.handleAddTodo.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
+    }
+    
+    componentDidUpdate(){
+        TodoAPI.setTodos(this.state.todos);
+    }
+
+    handleAddTodo(text){
+        this.setState({
+            todos:[
+                ...this.state.todos,
                 {
-                    id: '1',
-                    text: 'Passear com o cachorro'
-                },
-                {
-                    id: '2',
-                    text: 'Limpar o quarto'
-                },
-                {
-                    id: '3',
-                    text: 'Estudar'
-                },
-                {
-                    id: '4',
-                    text: 'Ir à academia'
+                    id:uuid(),
+                    text:text,
+                    completed: false
                 }
             ]
-        }
+        });
     }
+
+    handleToggle(id){
+        var updatedTodos = this.state.todos.map((todo)=>{
+            if(todo.id === id){
+                todo.completed = !todo.completed;
+            }
+            return todo;
+        });
+        this.setState({todos: updatedTodos});
+    }
+
+    handleSearch(searchCriteria){
+        this.setState({...searchCriteria});
+    }
+
     render(){
-        var {todos} = this.state;
+        var {todos,showCompleted,searchText} = this.state;
+        var filteredTodos = TodoAPI.filterTodos(todos,showCompleted,searchText);
         return(
             <div>
-                <TodoList todos={todos}/>
+                <TodoSearch onSearch={this.handleSearch}/>
+                <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+                <TodoAddForm onAddTodo={this.handleAddTodo}/>
             </div>
         );
     }
