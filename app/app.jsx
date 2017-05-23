@@ -6,8 +6,6 @@ import 'inferno-devtools';
 $(document).foundation();
 
 Inferno.render(
-        <div class="large-12 columns">
-            <TodoApp/> 
-        </div>,
+            <TodoApp/> ,
     document.getElementById('app')
 );

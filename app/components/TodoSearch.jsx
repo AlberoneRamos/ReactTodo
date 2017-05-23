@@ -34,7 +34,7 @@ export default class TodoSearch extends Component{
 
     render(){
         return(
-            <div className="todo-search">
+            <div className="todo-search  large-12 columns">
                 <div>
                     <input type="search" placeholder="Procurar atividade" name="searchText" onInput={this.handleSearchTextChange} value={this.state.searchText}/>
                 </div>
