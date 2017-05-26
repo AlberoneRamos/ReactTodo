@@ -1,4 +1,27 @@
 .todo-list{
-    height:85vh;
     overflow-y:scroll;
+    overflow:auto; 
+    position:absolute; 
+    top:105px;
+    right:0px; 
+    bottom:120px;
+}
+
+.todo-list .empty-list{
+    text-align: center;
+    font-weight:20;
+    font-style: italic;
+    color:#999;
+    & p{
+        padding-top:15px;
+        display:inline-block;
+    }
+}
+
+html,
+body {
+    overflow:hidden;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
 }

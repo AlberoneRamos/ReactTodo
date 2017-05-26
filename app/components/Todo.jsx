@@ -10,6 +10,7 @@ export default class Todo extends Component{
     render(){
         moment.locale('pt-br');
         var {id,text,completed,onToggle, createdAt, completedAt} = this.props;
+        var todoClassName = completed ? 'todo-completed' : '';
         var renderDate = ()=>{
             var message = 'Criado em ';
             var timestamp = createdAt;
@@ -20,10 +21,14 @@ export default class Todo extends Component{
             return message + moment(timestamp).format('DD/MM/YYYY @ HH:mm:ss')
         }
         return(
-            <div className="todo" onClick={()=>{onToggle(id)}}>
+            <div className={"todo "+todoClassName} onClick={()=>{onToggle(id)}}>
+               <div>
                 <input onChange={()=>{onToggle(id)}} type="checkbox" checked={completed}/>
+               </div>
+               <div>
                 <p>{text}</p>
-                <p>{renderDate()}</p>
+                <p className = "todo__subtext">{renderDate()}</p>
+             </div> 
 
             </div>
         );

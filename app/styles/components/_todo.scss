@@ -1,0 +1,27 @@
+.todo{
+    display:inline;
+    cursor:pointer;
+    display: flex;
+    align-items: center;
+    padding:1rem;
+    transition: background-color .3s ease;
+    left:0;
+    & p{
+        margin-bottom:0px;
+    }
+    &.todo-completed{
+        text-decoration:line-through;
+        font-style: italic;
+        color:#aaa;
+        text-decoration-style: #aaa;
+        
+    }
+    & input[type=checkbox]{
+        margin-top:40%;
+        margin-right: 2rem;
+    }
+    & .todo__subtext{
+        font-size:0.8rem;
+        color:#aaa;
+    }
+}

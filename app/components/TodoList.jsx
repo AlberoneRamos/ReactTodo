@@ -6,9 +6,10 @@ export default class TodoList extends Component{
 
     render(){
         var {todos} = this.props;
+        
         var renderTodos = () =>{
             if(todos.length == 0){
-                return <div className='empty-list'>Você não adicionou tarefas!</div>;
+                return <div className='empty-list'><p>Você não adicionou tarefas!</p></div>;
             }
             return todos.map((todo)=>{
                 return (
