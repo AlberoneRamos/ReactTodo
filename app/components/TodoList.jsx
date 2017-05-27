@@ -1,4 +1,4 @@
-import Inferno from 'Inferno';
+import Inferno from 'inferno';
 import Component from 'inferno-component';
 import Todo from './Todo';
 

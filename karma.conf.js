@@ -2,7 +2,15 @@ var webpackConfig = require('./webpack.config.js');
 
 module.exports = function(config){
     config.set({
-        browsers:['Chrome'],
+        browsers: [
+            'ChromeBackground'
+        ],
+        customLaunchers: {
+            ChromeBackground: {
+                base: 'Chrome',
+                flags: ['--window-size=0,0']
+            }
+        },
         singleRun: true,
         frameworks: ['mocha'],
         files:[
