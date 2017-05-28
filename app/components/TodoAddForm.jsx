@@ -1,7 +1,9 @@
 import Inferno from 'inferno';
 import Component from 'inferno-component';
+import {connect} from 'inferno-redux';
+import * as actions from './../actions/actions';
 
-export default class TodoAddForm extends Component{
+export class TodoAddForm extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -19,8 +21,9 @@ export default class TodoAddForm extends Component{
 
     onAddTodo(e){
         e.preventDefault();
+        var {dispatch} = this.props;
         if(this.state.todo.length>0){
-            this.props.onAddTodo(this.state.todo);
+            dispatch(actions.addTodo(this.state.todo));
             this.setState({
                 todo: ''
             });
@@ -39,3 +42,5 @@ export default class TodoAddForm extends Component{
         );
     }
 }
+
+export default connect()(TodoAddForm);

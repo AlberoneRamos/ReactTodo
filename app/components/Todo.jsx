@@ -1,16 +1,15 @@
 import Inferno from 'inferno';
+import {connect} from 'inferno-redux';
+import * as actions from './../actions/actions';
 import Component from 'inferno-component';
 import moment from 'moment';
 
-export default class Todo extends Component{
-    constructor(props){
-        super(props);
-    }
+export class Todo extends Component{
 
     render(){
         moment.locale('pt-br');
-        var {id,text,completed,onToggle, createdAt, completedAt} = this.props;
-        var todoClassName = completed ? 'todo-completed' : '';
+        var {id,text,completed, createdAt, completedAt, dispatch} = this.props;
+        var todoClassName = completed ? 'todo todo-completed' : 'todo';
         var renderDate = ()=>{
             var message = 'Criado em ';
             var timestamp = createdAt;
@@ -20,10 +19,11 @@ export default class Todo extends Component{
                 }
             return message + moment(timestamp).format('DD/MM/YYYY @ HH:mm:ss')
         }
+
         return(
-            <div className={"todo "+todoClassName} onClick={()=>{onToggle(id)}}>
+            <div className={todoClassName}>
                <div>
-                <input onChange={()=>{onToggle(id)}} type="checkbox" checked={completed}/>
+                <input type="checkbox" checked={completed} onClick={()=>{dispatch(actions.toggleTodo(id))}}/>
                </div>
                <div>
                 <p>{text}</p>
@@ -35,3 +35,5 @@ export default class Todo extends Component{
     }
 
 }
+
+export default connect()(Todo);

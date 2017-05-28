@@ -19,7 +19,6 @@ export default class TodoApp extends Component{
         }
         this.handleAddTodo = this.handleAddTodo.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
     }
     
     componentDidUpdate(){
@@ -40,17 +39,6 @@ export default class TodoApp extends Component{
         });
     }
 
-    handleToggle(id){
-        var updatedTodos = this.state.todos.map((todo)=>{
-            if(todo.id === id){
-                todo.completed = !todo.completed;
-                todo.completedAt = todo.completed ? moment() : undefined;
-            }
-            return todo;
-        });
-        this.setState({todos: updatedTodos});
-    }
-
     handleSearch(searchCriteria){
         this.setState({...searchCriteria});
     }
@@ -61,7 +49,7 @@ export default class TodoApp extends Component{
         return(
             <div>
                 <TodoSearch onSearch={this.handleSearch}/>
-                <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+                <TodoList/>
                 <TodoAddForm onAddTodo={this.handleAddTodo}/>
             </div>
         );

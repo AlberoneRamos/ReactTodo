@@ -1,8 +1,9 @@
 import Inferno from 'inferno';
+import {connect} from 'inferno-redux';
 import Component from 'inferno-component';
 import Todo from './Todo';
 
-export default class TodoList extends Component{
+export class TodoList extends Component{
 
     render(){
         var {todos} = this.props;
@@ -13,7 +14,7 @@ export default class TodoList extends Component{
             }
             return todos.map((todo)=>{
                 return (
-                    <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+                    <Todo key={todo.id} {...todo}/>
                 );
             });
         };
@@ -25,3 +26,11 @@ export default class TodoList extends Component{
     }
 
 }
+
+export default connect(
+    (state)=>{
+        return {
+            todos: state.todos
+        };
+    }
+)(TodoList);
