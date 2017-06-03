@@ -19,27 +19,26 @@ export function showCompletedReducer(state = false,action){
     }
 };
 
+
 export function todosReducer(state = [],action){
     switch(action.type){
         case 'ADD_TODO':
             return [
                 ...state,
-                {
-                    id:uuid(),
-                    text:action.text,
-                    createdAt:moment(),
-                    completed: false
-                }
+                action.todo
             ];
-        case 'TOGGLE_TODO':
+        case 'ADD_TODOS':
+            return [
+                ...state,
+                ...action.todos
+            ];
+        case 'UPDATE_TODO':
             return state.map((todo)=>{
                 if(todo.id == action.id){
-                    var nextCompleted = !todo.completed;
-                    return{
+                    return {
                         ...todo,
-                        completed: nextCompleted,
-                        completedAt: nextCompleted ? moment() : undefined 
-                    }
+                        ...action.updates
+                    };
                 }
                  else{
                      return todo;

@@ -23,7 +23,7 @@ export class TodoAddForm extends Component{
         e.preventDefault();
         var {dispatch} = this.props;
         if(this.state.todo.length>0){
-            dispatch(actions.addTodo(this.state.todo));
+            dispatch(actions.startAddTodo(this.state.todo));
             this.setState({
                 todo: ''
             });

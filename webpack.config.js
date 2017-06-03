@@ -22,7 +22,7 @@ module.exports = {
     resolve: {
         extensions: ['.js','.jsx'],
         alias: {
-                actions: './app/actions/actions.jsx'
+                app: './app/',
             }
     },
     module: {
