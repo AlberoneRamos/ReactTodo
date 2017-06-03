@@ -11,14 +11,17 @@ $(document).foundation();
 
 var store = configure();
 console.log(store.getState());
-store.subscribe(() =>{
-    var state = store.getState();
-    console.log(state);
-    TodoAPI.setTodos(state.todos);
-});
 
-var initialTodos = TodoAPI.getTodos();
-store.dispatch(actions.addTodos(initialTodos));
+// store.subscribe(() =>{
+//     var state = store.getState();
+//     console.log(state);
+//     TodoAPI.setTodos(state.todos);
+// });
+
+// var initialTodos = TodoAPI.getTodos();
+// store.dispatch(actions.addTodos(initialTodos));
+
+store.dispatch(actions.startAddTodos());
 
 Inferno.render(
             <Provider store={store}>

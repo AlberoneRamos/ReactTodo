@@ -10,10 +10,10 @@ export class TodoList extends Component{
         var {todos, showCompleted, searchText} = this.props;
         
         var renderTodos = () =>{
-            if(todos.length == 0){
+            var todoItems = TodoAPI.filterTodos(todos,showCompleted,searchText);
+            if(todoItems == 0){
                 return <div className='empty-list'><p>Você não adicionou tarefas!</p></div>;
             }
-            var todoItems = TodoAPI.filterTodos(todos,showCompleted,searchText);
             return todoItems.map((todo)=>{
                 return (
                     <Todo key={todo.id} {...todo}/>
