@@ -3,12 +3,27 @@ import Component from 'inferno-component';
 import TodoList from './TodoList';
 import TodoAddForm from './TodoAddForm';
 import TodoSearch from './TodoSearch';
+import redux from 'inferno-redux';
+import * as actions from './../actions/actions';
 
-export default class TodoApp extends Component{
-     
+export class TodoApp extends Component{
+    constructor(){
+        super();
+        this.onLogout = this.onLogout.bind(this);
+    } 
+    
+    onLogout(e){
+        var {dispatch} = this.props;
+        e.preventDefault();
+        dispatch(actions.startLogout());
+    }
+
     render(){
         return(
             <div>
+                <div className="page-actions">
+                    <a href="#" onClick={this.onLogout}>Logout</a>
+                </div>
                 <TodoSearch/>
                 <TodoList/>
                 <TodoAddForm/>
@@ -16,3 +31,5 @@ export default class TodoApp extends Component{
         );
     }
 }
+
+export default redux.connect()(TodoApp);

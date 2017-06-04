@@ -24,11 +24,6 @@ module.exports = {
             '$': 'jquery',
             'jQuery': 'jquery'
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compressor: {
-                warnings: false
-            }
-        }),
         new webpack.DefinePlugin({
             'process.env':{
                 NODE_ENV:JSON.stringify(process.env.NODE_ENV),
@@ -68,7 +63,7 @@ module.exports = {
             }
         ]
     },
-    devtool: process.env.NODE_ENV === 'production' ? undefined : 'inline-source-map',
+    devtool: process.env.NODE_ENV == 'production' ? undefined : 'inline-source-map',
     devServer: {
       historyApiFallback: true
   }

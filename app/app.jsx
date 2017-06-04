@@ -1,31 +1,31 @@
 import Inferno from 'inferno';
 import 'style-loader!foundation-sites/dist/css/foundation.min.css';
 import 'style-loader!css-loader!sass-loader!./styles/app.scss';
-import TodoApp from './components/TodoApp.jsx';
 import 'inferno-devtools';
+import createHashHistory from 'history/createHashHistory';
 import {Provider} from 'inferno-redux';
 import * as actions from  './actions/actions';
+import firebase from './firebase/';
 import configure from './store/configureStore';
-import TodoAPI from './api/TodoAPI';
+import router from './router/';
 $(document).foundation();
-
+var history = createHashHistory();
+firebase.auth().onAuthStateChanged((user)=>{
+    if(user){
+        history.push('/todos');
+    } else{
+        history.push('/');
+    }
+});
 var store = configure();
-console.log(store.getState());
-
-// store.subscribe(() =>{
-//     var state = store.getState();
-//     console.log(state);
-//     TodoAPI.setTodos(state.todos);
-// });
-
-// var initialTodos = TodoAPI.getTodos();
-// store.dispatch(actions.addTodos(initialTodos));
 
 store.dispatch(actions.startAddTodos());
 
+
+
 Inferno.render(
             <Provider store={store}>
-                <TodoApp/>    
+                {router}
             </Provider> ,
     document.getElementById('app')
 );

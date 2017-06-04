@@ -14,12 +14,16 @@
 
 .todo-search{
     width:100%;
-    padding:10px;
+    padding: 10px;
+    padding-top: 35px;
     vertical-align: middle;
     background-color:#e1e1e1;
-     -moz-box-shadow:    3px 3px 10px 2px #ccc;
-  -webkit-box-shadow: 3px 3px 10px 2px #ccc;
-  box-shadow:         3px 3px 10px 2px #ccc;
-  height:105px;
-  z-index:3;
+    -moz-box-shadow:    3px 3px 10px 2px #ccc;
+    -webkit-box-shadow: 3px 3px 10px 2px #ccc;
+    box-shadow:         3px 3px 10px 2px #ccc;
+    height:120px;
+    z-index:3;
+    & input[type=search]{
+      margin-bottom:10px;
+    }
 }

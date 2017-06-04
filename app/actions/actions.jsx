@@ -1,4 +1,4 @@
-import firebase, {firebaseRef} from '../firebase/';
+import firebase, {firebaseRef,facebookProvider} from '../firebase/';
 import moment from 'moment';
 
 export function setSearchText(searchText){
@@ -81,5 +81,23 @@ export function updateTodo(id, updates){
         type: 'UPDATE_TODO',
         id,
         updates
+    }
+}
+
+export function startLogin(){
+    return (dispatch, getState)=>{
+        return firebase.auth().signInWithPopup(facebookProvider).then((result)=>{
+            console.log('Autenticado com sucesso', result);
+        },(error)=>{
+            console.log('Erro ao autenticar',error);
+        });
+    }
+}
+
+export function startLogout(){
+    return (dispatch, getState)=>{
+        return firebase.auth().signOut().then(()=>{
+            console.log('Logout');
+        })
     }
 }
