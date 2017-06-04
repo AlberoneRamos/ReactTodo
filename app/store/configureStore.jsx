@@ -6,7 +6,8 @@ export default function configure(){
     var reducer = combineReducers({
         searchText: reducers.searchTextReducer,
         showCompleted: reducers.showCompletedReducer,
-        todos: reducers.todosReducer
+        todos: reducers.todosReducer,
+        auth: reducers.authReducer
     });
 
     return createStore(reducer,compose(

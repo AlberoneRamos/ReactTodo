@@ -9,17 +9,20 @@ import firebase from './firebase/';
 import configure from './store/configureStore';
 import router from './router/';
 $(document).foundation();
+
 var history = createHashHistory();
 firebase.auth().onAuthStateChanged((user)=>{
     if(user){
+        store.dispatch(actions.logIn(user.uid));
+        store.dispatch(actions.startAddTodos());
         history.push('/todos');
     } else{
+        store.dispatch(actions.logOut());
         history.push('/');
     }
 });
 var store = configure();
 
-store.dispatch(actions.startAddTodos());
 
 
 
