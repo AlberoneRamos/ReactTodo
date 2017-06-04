@@ -18,10 +18,10 @@ export class Login extends Component{
     render(){
         return(
             <div>
-                <h1 className="small-centered">Todo App</h1>
                 <div className="row">
                     <div className="columns small-centered small-10 medium-6 large-4">
                         <div className="callout callout-auth">
+                            <h3>Todo App!</h3>
                                 <p>
                                     <button className="button" onClick={this.onLogin}>Fazer Log-in com Facebook</button>
                                 </p>
