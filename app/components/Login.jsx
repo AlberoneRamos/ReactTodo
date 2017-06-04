@@ -22,7 +22,6 @@ export class Login extends Component{
                 <div className="row">
                     <div className="columns small-centered small-10 medium-6 large-4">
                         <div className="callout callout-auth">
-                            <h3>Login</h3>
                                 <p>
                                     <button className="button" onClick={this.onLogin}>Fazer Log-in com Facebook</button>
                                 </p>
